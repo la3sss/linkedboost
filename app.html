@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkedBoost AI — Générateur de posts LinkedIn</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f3f2ef; min-height: 100vh; }
+  header { background: #fff; border-bottom: 1px solid #e0e0e0; padding: 0 24px; height: 56px; display: flex; align-items: center; gap: 10px; }
+  .logo { width: 32px; height: 32px; background: #0077B5; border-radius: 6px; display: flex; align-items: center; justify-content: center; }
+  .logo svg { width: 18px; height: 18px; fill: #fff; }
+  header h1 { font-size: 18px; font-weight: 700; color: #0077B5; }
+  .container { max-width: 720px; margin: 40px auto; padding: 0 20px; }
+  .card { background: #fff; border-radius: 12px; padding: 32px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); margin-bottom: 24px; }
+  .card h2 { font-size: 22px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; text-align: center; }
+  .card p { color: #666; text-align: center; font-size: 15px; margin-bottom: 28px; }
+  label { display: block; font-size: 14px; font-weight: 600; color: #333; margin-bottom: 6px; }
+  input, textarea { width: 100%; padding: 10px 14px; border: 1.5px solid #ddd; border-radius: 8px; font-size: 15px; font-family: inherit; outline: none; transition: border 0.2s; }
+  input:focus, textarea:focus { border-color: #0077B5; }
+  .field { margin-bottom: 18px; }
+  .api-field { margin-bottom: 20px; }
+  .api-note { font-size: 12px; color: #999; margin-top: 4px; }
+  button { width: 100%; padding: 13px; background: #0077B5; color: #fff; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  button:hover { background: #005f8f; }
+  button:disabled { background: #a0c4d8; cursor: not-allowed; }
+  .results { display: none; }
+  .results.visible { display: block; }
+  .results h3 { font-size: 16px; font-weight: 700; color: #333; margin-bottom: 16px; }
+  .post-card { background: #fff; border-radius: 10px; padding: 20px; margin-bottom: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); border-left: 4px solid #0077B5; }
+  .post-label { display: inline-block; background: #e8f4fb; color: #0077B5; font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+  .post-title { font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 10px; }
+  .post-content { font-size: 14px; color: #444; line-height: 1.7; white-space: pre-wrap; }
+  .copy-btn { width: auto; padding: 7px 16px; background: transparent; color: #0077B5; border: 1.5px solid #0077B5; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; margin-top: 14px; transition: all 0.2s; }
+  .copy-btn:hover { background: #0077B5; color: #fff; }
+  .copy-btn.copied { background: #00a650; border-color: #00a650; color: #fff; }
+  .spinner { width: 18px; height: 18px; border: 2px solid rgba(255,255,255,0.4); border-top-color: #fff; border-radius: 50%; animation: spin 0.7s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .error { background: #fff0f0; border: 1px solid #ffcccc; border-radius: 8px; padding: 12px 16px; color: #c0392b; font-size: 14px; margin-top: 12px; display: none; }
+  .error.visible { display: block; }
+  .toggle-api { font-size: 13px; color: #0077B5; cursor: pointer; text-decoration: underline; margin-bottom: 14px; display: inline-block; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+  </div>
+  <h1>LinkedBoost AI</h1>
+</header>
+
+<div class="container">
+  <div class="card">
+    <h2>Générez des posts LinkedIn percutants</h2>
+    <p>Entrez votre domaine d'expertise et obtenez 3 posts optimisés, prêts à publier.</p>
+
+```
+<span class="toggle-api" onclick="toggleApiField()">Configurer ma clé API</span>
+
+<div class="api-field" id="apiField" style="display:none;">
+  <label for="apiKey">Clé API Anthropic</label>
+  <input type="password" id="apiKey" placeholder="sk-ant-..." />
+  <p class="api-note">Ta clé n'est jamais envoyée ailleurs que l'API Anthropic. Elle reste dans ton navigateur.</p>
+</div>
+
+<div class="field">
+  <label for="domain">Domaine d'expertise *</label>
+  <input type="text" id="domain" placeholder="Ex : marketing digital, immobilier, RH..." />
+</div>
+
+<div class="field">
+  <label for="idea">Idée ou URL source <span style="font-weight:400;color:#999">(optionnel)</span></label>
+  <input type="text" id="idea" placeholder="Un sujet précis, une actualité, un lien d'article..." />
+</div>
+
+<button id="generateBtn" onclick="generate()">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+  Générer mes posts
+</button>
+
+<div class="error" id="errorBox"></div>
+```
+
+  </div>
+
+  <div class="results" id="results">
+    <h3>Vos posts générés</h3>
+    <div id="postsContainer"></div>
+  </div>
+</div>
+
+<script>
+function toggleApiField() {
+  const f = document.getElementById('apiField');
+  f.style.display = f.style.display === 'none' ? 'block' : 'none';
+}
+
+function showError(msg) {
+  const el = document.getElementById('errorBox');
+  el.textContent = msg;
+  el.classList.add('visible');
+}
+
+function hideError() {
+  document.getElementById('errorBox').classList.remove('visible');
+}
+
+function setLoading(on) {
+  const btn = document.getElementById('generateBtn');
+  if (on) {
+    btn.disabled = true;
+    btn.innerHTML = '<div class="spinner"></div> Génération en cours...';
+  } else {
+    btn.disabled = false;
+    btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Générer mes posts';
+  }
+}
+
+function copyPost(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copié !';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copier'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function renderPosts(posts) {
+  const labels = ['Storytelling', 'Liste pratique', 'Opinion tranchée'];
+  const container = document.getElementById('postsContainer');
+  container.innerHTML = '';
+  posts.forEach((p, i) => {
+    const div = document.createElement('div');
+    div.className = 'post-card';
+    div.innerHTML = `
+      <span class="post-label">${labels[i] || 'Post ' + (i+1)}</span>
+      <div class="post-title">${p.title}</div>
+      <div class="post-content">${p.content}</div>
+      <button class="copy-btn" onclick="copyPost(this, \`${p.content.replace(/`/g,'\\`')}\`)">Copier</button>
+    `;
+    container.appendChild(div);
+  });
+  document.getElementById('results').classList.add('visible');
+}
+
+function parsePosts(text) {
+  const parts = text.split(/---POST---/i).map(s => s.trim()).filter(Boolean);
+  return parts.slice(0, 3).map((block, i) => {
+    const lines = block.split('\n').filter(Boolean);
+    const title = lines[0].replace(/^#+\s*/, '').trim();
+    const content = lines.slice(1).join('\n').trim();
+    return { title, content: content || block };
+  });
+}
+
+async function generate() {
+  hideError();
+  const domain = document.getElementById('domain').value.trim();
+  const idea = document.getElementById('idea').value.trim();
+  const apiKey = document.getElementById('apiKey').value.trim();
+
+  if (!domain) { showError('Veuillez entrer un domaine d\'expertise.'); return; }
+  if (!apiKey) {
+    document.getElementById('apiField').style.display = 'block';
+    showError('Veuillez entrer votre clé API Anthropic pour générer des posts réels.');
+    return;
+  }
+
+  setLoading(true);
+  document.getElementById('results').classList.remove('visible');
+
+  const prompt = `Tu es un expert LinkedIn francophone spécialisé dans la création de contenu viral et engageant.
+
+Génère exactement 3 posts LinkedIn optimisés sur le domaine : "${domain}"${idea ? `\nIdée ou contexte : "${idea}"` : ''}.
+
+Sépare chaque post par ---POST---
+
+Post 1 — Storytelling personnel :
+- Commence par une histoire ou anecdote personnelle
+- Structure : situation initiale → problème → solution → leçon
+- Ton : humain, authentique, vulnérable
+- Longueur : 150-200 mots
+- Termine par une question ouverte pour l'engagement
+
+Post 2 — Liste pratique :
+- Titre accrocheur avec un chiffre
+- 5 conseils actionnables et concrets
+- Chaque point avec une explication courte
+- Emoji pour chaque point
+- Appel à l'action final
+
+Post 3 — Opinion tranchée :
+- Commence par une affirmation provocatrice ou contre-intuitive
+- Développe avec 2-3 arguments solides
+- Donne ton point de vue clair et assumé
+- Termine par une question qui invite au débat
+
+Format de chaque post :
+[Titre du post sur la première ligne]
+[Contenu du post]`;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 2000,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.error?.message || 'Erreur API Anthropic');
+    }
+
+    const data = await res.json();
+    const text = data.content[0].text;
+    const posts = parsePosts(text);
+    renderPosts(posts);
+  } catch (err) {
+    showError('Erreur : ' + (err.message || 'Une erreur est survenue.'));
+  } finally {
+    setLoading(false);
+  }
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && e.ctrlKey) generate();
+});
+</script>
+
+</body>
+</html>
