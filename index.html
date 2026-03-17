@@ -65,7 +65,7 @@ NAV
 ======================================== */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;padding:0 40px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.88);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(0,0,0,.06)}
 .nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
-.nav-brand-name{font-size:16px;font-weight:800;color:var(–g900);letter-spacing:-0.4px}
+.nav-brand-name{font-size:15px;font-weight:800;color:var(–g900);letter-spacing:-0.4px;white-space:nowrap}
 .nav-brand-name span{background:var(–grad-brand);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .nav-links{display:flex;align-items:center;gap:2px}
 .nav-links a{font-size:14px;font-weight:500;color:var(–g500);text-decoration:none;padding:6px 14px;border-radius:8px;transition:all .15s}
@@ -92,7 +92,7 @@ HERO
 
 /* Headline */
 .hero h1{font-size:54px;font-weight:800;line-height:1.04;letter-spacing:-2.5px;color:var(–g900);margin-bottom:20px}
-.hero h1 .grad{background:var(–grad-brand);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero h1 .grad{color:var(–brand);background:var(–grad-brand);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .hero h1 .underline-word{position:relative;display:inline-block}
 .hero h1 .underline-word::after{content:’’;position:absolute;bottom:-4px;left:0;right:0;height:3px;background:var(–grad-brand);border-radius:2px}
 
@@ -122,7 +122,7 @@ HERO
 .hero-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:40px;border:1px solid var(–g200);border-radius:14px;overflow:hidden;background:var(–g50)}
 .hm{padding:18px 20px;border-right:1px solid var(–g200);text-align:center}
 .hm:last-child{border-right:none}
-.hm-val{font-size:26px;font-weight:800;letter-spacing:-1px;background:var(–grad-brand);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hm-val{font-size:26px;font-weight:800;letter-spacing:-1px;color:var(–brand);background:var(–grad-brand);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .hm-label{font-size:11px;color:var(–g400);font-weight:600;margin-top:2px;text-transform:uppercase;letter-spacing:.5px}
 
 /* ========================================
@@ -369,17 +369,23 @@ RESPONSIVE
 @media(max-width:960px){
 .hero-inner,.pain-grid,.steps-row,.feat-grid,.nums-grid,.pgrid{grid-template-columns:1fr}
 .hero-section{padding:90px 20px 60px}
-.hero h1{font-size:38px}
+.hero h1{font-size:36px}
 .hero-visual{display:none}
 .tmasonry{columns:1}
-nav{padding:0 20px}
+nav{padding:0 16px}
 .nav-links{display:none}
-.logos-row{gap:18px}
+.nav-login{display:none}
+.logos-row{gap:16px}
 .sec{padding:60px 20px}
 .sec-h2{font-size:30px}
 .cta-sec{padding:72px 20px}
-.cta-h2{font-size:34px}
+.cta-h2{font-size:32px}
 .foot-top{flex-direction:column;gap:28px}
+.hero-metrics{grid-template-columns:repeat(3,1fr)}
+.hm{padding:14px 12px}
+.hm-val{font-size:22px}
+.hero-actions{flex-direction:column;align-items:flex-start;gap:8px}
+.hero-btn{width:100%;justify-content:center}
 }
 </style>
 
@@ -727,7 +733,7 @@ nav{padding:0 20px}
     </div>
     <div class="foot-col"><h4>Produit</h4><ul><li><a href="#how">Comment ça marche</a></li><li><a href="app.html">Accéder à l'app</a></li><li><a href="#pricing">Tarifs</a></li><li><a href="#faq">FAQ</a></li></ul></div>
     <div class="foot-col"><h4>Ressources</h4><ul><li><a href="#">Blog LinkedIn</a></li><li><a href="#">Guide débutant</a></li><li><a href="#">Programme d'affiliation</a></li></ul></div>
-    <div class="foot-col"><h4>Légal</h4><ul><li><a href="#">Mentions légales</a></li><li><a href="#">CGU</a></li><li><a href="#">Confidentialité</a></li><li><a href="mailto:hello@linkedboost.ai">Contact</a></li></ul></div>
+    <div class="foot-col"><h4>Légal</h4><ul><li><a href="#">Mentions légales</a></li><li><a href="#">CGU</a></li><li><a href="#">Confidentialité</a></li><li><a href="/cdn-cgi/l/email-protection#3e565b5252517e525750555b5a5c51514d4a105f57">Contact</a></li></ul></div>
   </div>
   <div class="foot-bottom">
     <p>© 2026 LinkedBoost AI · Fait avec ❤️ en France</p>
@@ -736,17 +742,12 @@ nav{padding:0 20px}
 </div>
 </footer>
 
-<script>
-function ctaSignup(){
-  const e=document.getElementById('ctaEmail').value.trim();
-  if(!e||!e.includes('@')){alert('Merci d\'entrer un email valide.');return}
-  document.querySelector('.cta-form').style.display='none';
-  const m=document.getElementById('successMsg');
-  m.classList.add('show');
-  m.innerHTML='🎉 Parfait ! On te contacte dans les 24h. → <a href="app.html" style="color:#6ee7b7;font-weight:700">Essayer l\'app maintenant</a>';
-  setTimeout(()=>{window.location.href='app.html'},3000);
-}
-</script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 
-</body>
-</html>
+function ctaSignup(){
+const e=document.getElementById(‘ctaEmail’).value.trim();
+if(!e||!e.includes(’@’)){alert(‘Merci d'entrer un email valide.’);return}
+document.querySelector(’.cta-form’).style.display=‘none’;
+const m=document.getElementById(‘successMsg’);
+m.classList.add(‘show’);
+m.innerHTML=’🎉 Parfait ! On te contacte dans les 24h. → <a href=“app.html” style
