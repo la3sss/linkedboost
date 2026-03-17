@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+
+<html lang="fr" prefix="og: https://ogp.me/ns#">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkedBoost AI — Générateur de Posts LinkedIn par IA | Gratuit</title>
+<meta name="description" content="Générez 3 posts LinkedIn percutants en 10 secondes grâce à l'IA. Storytelling, conseils pratiques, opinion tranchée. 100% en français. Essai gratuit sans carte bancaire.">
+<meta name="keywords" content="générateur posts LinkedIn, outil LinkedIn IA, créer contenu LinkedIn, automatiser LinkedIn, posts LinkedIn français, LinkedIn marketing IA, rédaction LinkedIn automatique">
+<meta name="author" content="LinkedBoost AI">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://linkedboost.vercel.app/">
+<link rel="alternate" hreflang="fr" href="https://linkedboost.vercel.app/" />
+<link rel="alternate" hreflang="x-default" href="https://linkedboost.vercel.app/" />
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://linkedboost.vercel.app/">
+<meta property="og:title" content="LinkedBoost AI — Générez vos posts LinkedIn en 10 secondes">
+<meta property="og:description" content="Plus d'angoisse de la page blanche. LinkedBoost AI crée 3 posts LinkedIn viraux depuis votre domaine d'expertise. 100% français. Gratuit pour commencer.">
+<meta property="og:image" content="https://linkedboost.vercel.app/og-image.png">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="LinkedBoost AI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="LinkedBoost AI — Posts LinkedIn en 10 secondes">
+<meta name="twitter:description" content="Générez 3 posts LinkedIn percutants par IA. Storytelling, conseils, opinion. 100% français.">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"LinkedBoost AI","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://linkedboost.vercel.app","description":"Générateur de posts LinkedIn par intelligence artificielle. Crée 3 formats optimisés en 10 secondes, 100% en français.","offers":[{"@type":"Offer","name":"Free","price":"0","priceCurrency":"EUR"},{"@type":"Offer","name":"Starter","price":"19","priceCurrency":"EUR","billingPeriod":"P1M"},{"@type":"Offer","name":"Pro","price":"49","priceCurrency":"EUR","billingPeriod":"P1M"}],"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"127"},"inLanguage":"fr"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Les posts générés sonnent-ils vraiment naturels ?","acceptedAnswer":{"@type":"Answer","text":"Oui. LinkedBoost utilise Claude, le modèle IA le plus avancé pour le français. 80% des utilisateurs modifient moins de 20% du contenu avant de publier."}},{"@type":"Question","name":"Ai-je besoin de compétences techniques ?","acceptedAnswer":{"@type":"Answer","text":"Aucune. Tu entres ton domaine en français, tu cliques sur Générer, tu copies le post."}},{"@type":"Question","name":"LinkedBoost AI est-il gratuit ?","acceptedAnswer":{"@type":"Answer","text":"Oui, plan gratuit avec 5 générations par mois, sans carte bancaire. Plans payants à 19€ et 49€/mois."}},{"@type":"Question","name":"LinkedIn peut-il détecter le contenu IA ?","acceptedAnswer":{"@type":"Answer","text":"Non. LinkedIn ne dispose pas de système de détection IA fiable. Nos posts sont conçus pour être personnalisés avant publication."}},{"@type":"Question","name":"Puis-je annuler à tout moment ?","acceptedAnswer":{"@type":"Answer","text":"Oui, sans condition et sans frais depuis votre tableau de bord. Aucun engagement minimum."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#0077B5;--blue-d:#005f8f;--blue-l:#e8f4fb;--blue-m:#b3d4e8;--black:#0a0a0a;--white:#fff;--gray:#f5f5f3;--text:#1a1a1a;--muted:#6b6b6b;--border:#e8e8e4;--green:#00c896;--warn:#f59e0b}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:8px;font-family:'Syne',sans-serif;font-weight:800;font-size:17px;color:var(--blue);text-decoration:none}
+.nav-icon{width:28px;height:28px;background:var(--blue);border-radius:6px;display:flex;align-items:center;justify-content:center}
+.nav-icon svg{width:15px;height:15px;fill:white}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:14px;color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{background:var(--blue);color:white;border:none;padding:9px 20px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;font-family:'DM Sans',sans-serif;transition:background .2s}
+.nav-cta:hover{background:var(--blue-d)}
+.urgency{background:var(--black);color:white;text-align:center;padding:10px 20px;font-size:13px;margin-top:60px}
+.urgency strong{color:var(--warn)}
+.hero{padding:70px 40px 90px;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--blue-l);color:var(--blue);font-size:13px;font-weight:500;padding:5px 12px;border-radius:20px;margin-bottom:20px}
+.dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+h1{font-family:'Syne',sans-serif;font-weight:800;font-size:50px;line-height:1.05;color:var(--black);margin-bottom:20px;letter-spacing:-1.5px}
+h1 span{color:var(--blue)}
+.hero-sub{font-size:17px;color:var(--muted);line-height:1.75;margin-bottom:32px;font-weight:300}
+.hform{display:flex;flex-direction:column;gap:10px;max-width:440px}
+.hinput{display:flex;border:1.5px solid var(--border);border-radius:10px;overflow:hidden;background:white;box-shadow:0 2px 12px rgba(0,0,0,.06);transition:border .2s}
+.hinput:focus-within{border-color:var(--blue)}
+.hinput input{flex:1;border:none;outline:none;padding:14px 16px;font-size:15px;font-family:'DM Sans',sans-serif}
+.hinput button{background:var(--blue);color:white;border:none;padding:14px 22px;font-size:15px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;transition:background .2s}
+.hinput button:hover{background:var(--blue-d)}
+.htrust{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
+.avatars{display:flex}
+.avatars span{width:24px;height:24px;border-radius:50%;border:2px solid white;margin-left:-6px;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;color:white}
+.avatars span:first-child{margin-left:0}
+.hstats{display:flex;gap:28px;margin-top:28px;padding-top:28px;border-top:1px solid var(--border)}
+.stat-n{font-family:'Syne',sans-serif;font-weight:800;font-size:26px;color:var(--black)}
+.stat-l{font-size:12px;color:var(--muted)}
+.mockup{background:white;border-radius:16px;border:1px solid var(--border);overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.1)}
+.mbar{background:var(--gray);padding:10px 14px;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--border)}
+.mdot{width:10px;height:10px;border-radius:50%}
+.mbody{padding:18px}
+.mrow{display:flex;gap:8px;margin-bottom:14px}
+.minp{flex:1;background:var(--gray);border:1px solid var(--border);border-radius:6px;padding:8px 12px;font-size:12px;color:var(--muted);font-family:'DM Sans',sans-serif}
+.mbtn{background:var(--blue);color:white;border:none;padding:8px 12px;border-radius:6px;font-size:12px;font-family:'DM Sans',sans-serif;white-space:nowrap}
+.pp{border-radius:8px;padding:12px;margin-bottom:8px;border-left:3px solid}
+.pp:nth-child(1){background:#f0f9ff;border-color:var(--blue)}
+.pp:nth-child(2){background:#f0fdf4;border-color:var(--green)}
+.pp:nth-child(3){background:#fef9f0;border-color:var(--warn)}
+.pt{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px}
+.pp:nth-child(1) .pt{color:var(--blue)}.pp:nth-child(2) .pt{color:#059669}.pp:nth-child(3) .pt{color:#d97706}
+.px{font-size:11px;color:#444;line-height:1.5}
+.pf{display:flex;justify-content:flex-end;margin-top:6px}
+.ct{font-size:10px;color:var(--blue);border:1px solid var(--blue-m);padding:2px 7px;border-radius:4px}
+.fbadge{position:absolute;bottom:-14px;right:-14px;background:white;border:1px solid var(--border);border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:8px;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.fi{width:32px;height:32px;background:#e8f9f2;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px}
+.fv{font-size:13px;font-weight:600;color:var(--black)}.fl{font-size:11px;color:var(--muted)}
+.logos{background:var(--gray);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:24px 40px;text-align:center}
+.logos p{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:14px}
+.logos-list{display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap}
+.li{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:#bbb}
+.sec{padding:90px 40px;max-width:1100px;margin:0 auto}
+.slabel{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--blue);margin-bottom:12px}
+h2{font-family:'Syne',sans-serif;font-weight:800;font-size:40px;color:var(--black);letter-spacing:-1px;margin-bottom:14px;line-height:1.1}
+.ssub{font-size:17px;color:var(--muted);font-weight:300;max-width:520px;line-height:1.65}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:56px}
+.step{padding:28px;border:1px solid var(--border);border-radius:14px;transition:all .2s;position:relative;overflow:hidden}
+.step::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--blue);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.step:hover{border-color:var(--blue);box-shadow:0 8px 32px rgba(0,119,181,.08)}
+.step:hover::before{transform:scaleX(1)}
+.snum{font-family:'Syne',sans-serif;font-weight:800;font-size:12px;color:var(--blue);background:var(--blue-l);width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.step h3{font-family:'Syne',sans-serif;font-weight:700;font-size:17px;margin-bottom:8px;color:var(--black)}
+.step p{font-size:14px;color:var(--muted);line-height:1.65}
+.fw{background:var(--black)}
+.ft{padding:90px 40px;max-width:1100px;margin:0 auto}
+.ft .slabel{color:var(--green)}.ft h2{color:white}.ft .ssub{color:rgba(255,255,255,.45)}
+.fg{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-top:56px;background:rgba(255,255,255,.06);border-radius:16px;overflow:hidden}
+.feat{background:var(--black);padding:32px;transition:background .2s}
+.feat:hover{background:#111}
+.feat-i{font-size:26px;margin-bottom:14px}
+.feat h3{font-family:'Syne',sans-serif;font-weight:700;font-size:17px;color:white;margin-bottom:8px}
+.feat p{font-size:14px;color:rgba(255,255,255,.45);line-height:1.65}
+.nw{background:var(--blue)}
+.nums{padding:70px 40px;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center}
+.nv{font-family:'Syne',sans-serif;font-weight:800;font-size:44px;color:white;letter-spacing:-2px}
+.nl{font-size:14px;color:rgba(255,255,255,.65);margin-top:4px}
+.th{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:16px}
+.tr{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.ts{color:var(--warn);font-size:22px;letter-spacing:2px}
+.trt{font-size:14px;color:var(--muted)}
+.tg3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:18px}
+.tg2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-bottom:18px}
+.tg4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:18px}
+.t{background:white;border-radius:14px;padding:22px;border:1px solid var(--border);transition:box-shadow .2s;display:flex;flex-direction:column}
+.t:hover{box-shadow:0 8px 32px rgba(0,0,0,.07)}
+.tstars{color:var(--warn);font-size:13px;margin-bottom:10px}
+.tt{font-size:14px;color:var(--text);line-height:1.7;font-style:italic;flex:1;margin-bottom:16px}
+.tt strong{font-style:normal;color:var(--blue)}
+.ta{display:flex;align-items:center;gap:10px}
+.av{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;color:white;flex-shrink:0}
+.an{font-size:13px;font-weight:500;color:var(--black)}.ar{font-size:12px;color:var(--muted)}
+.t.feat-t{border-color:var(--blue);background:#fafcff}
+.tbadge{display:inline-block;background:var(--blue-l);color:var(--blue);font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px}
+.plan{border:1.5px solid var(--border);border-radius:16px;padding:28px;position:relative;transition:all .2s;background:white}
+.plan:hover{box-shadow:0 8px 32px rgba(0,0,0,.07)}
+.plan.pop{border-color:var(--blue);box-shadow:0 0 0 4px rgba(0,119,181,.07)}
+.pbadge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--blue);color:white;font-size:11px;font-weight:600;padding:4px 14px;border-radius:20px;white-space:nowrap}
+.pname{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:var(--black);margin-bottom:2px}
+.pprice{font-family:'Syne',sans-serif;font-weight:800;font-size:44px;color:var(--black);letter-spacing:-2px;margin:12px 0 4px;line-height:1}
+.pprice span{font-size:15px;font-weight:400;color:var(--muted);letter-spacing:0}
+.pdesc{font-size:13px;color:var(--muted);margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.pf{list-style:none;margin-bottom:24px;display:flex;flex-direction:column;gap:10px}
+.pf li{font-size:14px;color:var(--text);display:flex;align-items:flex-start;gap:8px}
+.pf li::before{content:'✓';color:var(--green);font-weight:700;font-size:13px;margin-top:1px;flex-shrink:0}
+.pf li.no::before{content:'✕';color:#ddd}
+.pf li.no{color:var(--muted)}
+.pb{width:100%;padding:13px;border-radius:10px;font-size:15px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;border:1.5px solid var(--blue)}
+.pb.prim{background:var(--blue);color:white}
+.pb.prim:hover{background:var(--blue-d)}
+.pb.sec{background:transparent;color:var(--blue)}
+.pb.sec:hover{background:var(--blue-l)}
+.pg2{text-align:center;margin-top:12px;font-size:12px;color:var(--muted)}
+.faq-l{margin-top:50px;max-width:720px;margin-left:auto;margin-right:auto}
+.faq-i{border-bottom:1px solid var(--border);padding:20px 0;cursor:pointer}
+.faq-q{font-weight:500;font-size:16px;color:var(--black);display:flex;justify-content:space-between;align-items:center;gap:16px;user-select:none}
+.faq-ic{color:var(--blue);font-size:22px;flex-shrink:0;transition:transform .25s;font-weight:300}
+.faq-i.open .faq-ic{transform:rotate(45deg)}
+.faq-a{font-size:14px;color:var(--muted);line-height:1.75;max-height:0;overflow:hidden;transition:max-height .35s ease,padding .25s}
+.faq-i.open .faq-a{max-height:300px;padding-top:12px}
+.cw{background:linear-gradient(135deg,#005f8f 0%,#0077B5 60%,#0099e6 100%)}
+.cs{padding:100px 40px;max-width:680px;margin:0 auto;text-align:center}
+.cs h2{font-family:'Syne',sans-serif;font-weight:800;font-size:44px;color:white;letter-spacing:-1.5px;margin-bottom:16px;line-height:1.1}
+.cs p{font-size:18px;color:rgba(255,255,255,.7);margin-bottom:36px;font-weight:300}
+.cf{display:flex;max-width:460px;margin:0 auto 12px;border-radius:12px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.25)}
+.cf input{flex:1;border:none;outline:none;padding:16px 18px;font-size:15px;font-family:'DM Sans',sans-serif}
+.cf button{background:var(--black);color:white;border:none;padding:16px 24px;font-size:15px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;transition:background .2s}
+.cf button:hover{background:#222}
+.cn{font-size:13px;color:rgba(255,255,255,.45)}
+.ctr{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:24px;flex-wrap:wrap}
+.cti{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.6)}
+.sm{display:none;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:10px;padding:16px;color:white;font-size:15px;text-align:center;max-width:460px;margin:0 auto}
+.sm.v{display:block}
+footer{background:var(--black);padding:48px 40px 32px}
+.fi2{max-width:1100px;margin:0 auto}
+.ft2{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:40px;gap:40px;flex-wrap:wrap}
+.fb2{max-width:280px}
+.flogo{display:flex;align-items:center;gap:8px;font-family:'Syne',sans-serif;font-weight:800;font-size:16px;color:white;margin-bottom:10px}
+.fli{width:26px;height:26px;background:var(--blue);border-radius:5px;display:flex;align-items:center;justify-content:center}
+.fli svg{width:13px;height:13px;fill:white}
+.fd{font-size:13px;color:rgba(255,255,255,.4);line-height:1.65}
+.fl2 h4{font-family:'Syne',sans-serif;font-weight:700;font-size:13px;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}
+.fl2 ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.fl2 a{font-size:13px;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s}
+.fl2 a:hover{color:white}
+.fb3{border-top:1px solid rgba(255,255,255,.08);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.fb3 p{font-size:12px;color:rgba(255,255,255,.25)}
+.fb3 a{color:rgba(255,255,255,.4);text-decoration:none}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-l{animation:fadeUp .5s ease both}.hero-r{animation:fadeUp .5s .15s ease both}
+@media(max-width:900px){
+.hero{grid-template-columns:1fr;gap:48px;padding:80px 20px 60px}
+h1{font-size:36px}.hero-r{display:none}
+.steps,.fg,.tg3,.tg4,.pg{grid-template-columns:1fr}
+.tg2{grid-template-columns:1fr}
+.nums{grid-template-columns:repeat(2,1fr)}
+nav{padding:0 20px}.nav-links{display:none}
+.sec{padding:60px 20px}h2{font-size:30px}
+.logos-list{gap:18px}.ft2{flex-direction:column}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">
+    <div class="nav-icon"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></div>
+    LinkedBoost AI
+  </a>
+  <div class="nav-links">
+    <a href="#how">Comment ça marche</a>
+    <a href="#testi">Avis</a>
+    <a href="#pricing">Tarifs</a>
+    <a href="#faq">FAQ</a>
+  </div>
+  <a class="nav-cta" href="#pricing">Commencer — Gratuit</a>
+</nav>
+
+<div class="urgency">🔥 Beta ouverte — <strong>Places limitées à 500 utilisateurs.</strong> 147 inscrits cette semaine.</div>
+
+<section style="background:white">
+<div class="hero">
+  <div class="hero-l">
+    <div class="badge"><div class="dot"></div>Nouveau · Générateur LinkedIn par IA</div>
+    <h1>Générez vos posts<br>LinkedIn <span>par IA,</span><br>en 10 secondes.</h1>
+    <p class="hero-sub">Plus d'angoisse de la page blanche. LinkedBoost AI crée 3 posts LinkedIn percutants depuis votre domaine d'expertise — storytelling, conseils pratiques, opinion tranchée. Tu choisis, tu copies, tu publies.</p>
+    <div class="hform">
+      <div class="hinput">
+        <input type="email" id="heroEmail" placeholder="Votre email professionnel" />
+        <button onclick="heroSignup()">Accès gratuit →</button>
+      </div>
+      <div class="htrust">
+        <div class="avatars">
+          <span style="background:#0077B5">SC</span><span style="background:#00c896">KM</span><span style="background:#f59e0b">AL</span><span style="background:#e74c3c">PD</span><span style="background:#8e44ad">NR</span>
+        </div>
+        <span>+<strong>500 professionnels</strong> inscrits · Pas de carte bancaire</span>
+      </div>
+    </div>
+    <div class="hstats">
+      <div><div class="stat-n">10s</div><div class="stat-l">par génération</div></div>
+      <div><div class="stat-n">3</div><div class="stat-l">formats différents</div></div>
+      <div><div class="stat-n">4.9★</div><div class="stat-l">note moyenne</div></div>
+    </div>
+  </div>
+  <div class="hero-r" style="position:relative">
+    <div class="mockup">
+      <div class="mbar">
+        <div class="mdot" style="background:#ff5f57"></div><div class="mdot" style="background:#febc2e"></div><div class="mdot" style="background:#28c840"></div>
+        <span style="margin-left:8px;font-size:11px;color:#999">linkedboost.vercel.app</span>
+      </div>
+      <div class="mbody">
+        <div class="mrow"><div class="minp">Marketing digital</div><div class="mbtn">⚡ Générer</div></div>
+        <div class="pp"><div class="pt">Storytelling</div><div class="px">Il y a 2 ans, j'ai fait une erreur qui m'a coûté 10 000€. J'étais persuadé d'avoir trouvé LA stratégie parfaite...</div><div class="pf"><span class="ct">Copier</span></div></div>
+        <div class="pp"><div class="pt">Liste pratique</div><div class="px">5 techniques de marketing digital que 90% des entrepreneurs ignorent 🚀 1️⃣ Le retargeting émotionnel...</div><div class="pf"><span class="ct">Copier</span></div></div>
+        <div class="pp"><div class="pt">Opinion tranchée</div><div class="px">Le marketing digital est devenu une course à l'armement. Et c'est une erreur fondamentale...</div><div class="pf"><span class="ct">Copier</span></div></div>
+      </div>
+    </div>
+    <div class="fbadge"><div class="fi">⚡</div><div><div class="fv">Généré en 8 secondes</div><div class="fl">3 posts prêts à publier</div></div></div>
+  </div>
+</div>
+</section>
+
+<div class="logos">
+  <p>Utilisé par des professionnels de</p>
+  <div class="logos-list">
+    <span class="li">Marketing</span><span class="li">Immobilier</span><span class="li">Finance</span><span class="li">RH & Recrutement</span><span class="li">Consulting</span><span class="li">Tech & SaaS</span><span class="li">Coaching</span><span class="li">Juridique</span>
+  </div>
+</div>
+
+<div style="background:white" id="how">
+<div class="sec">
+  <div class="slabel">Comment ça marche</div>
+  <h2>3 étapes.<br>10 secondes.</h2>
+  <p class="ssub">Aucune compétence en rédaction requise. L'IA fait le travail, tu prends le crédit.</p>
+  <div class="steps">
+    <div class="step"><div class="snum">01</div><h3>Entre ton domaine</h3><p>Marketing, immobilier, RH, finance… Tape simplement ton secteur ou ton sujet du jour. L'IA s'adapte à n'importe quel domaine francophone.</p></div>
+    <div class="step"><div class="snum">02</div><h3>L'IA génère en 10s</h3><p>Claude — le modèle IA le plus avancé pour le français — crée 3 posts avec 3 formats différents, optimisés pour l'algorithme LinkedIn 2026.</p></div>
+    <div class="step"><div class="snum">03</div><h3>Copie et publie</h3><p>Un clic pour copier. Tu colles directement dans LinkedIn. Tes abonnés voient du contenu de qualité professionnelle, chaque semaine.</p></div>
+  </div>
+</div>
+</div>
+
+<div class="fw">
+<div class="ft">
+  <div class="slabel">Fonctionnalités</div>
+  <h2>Tout ce dont tu<br>as besoin.</h2>
+  <p class="ssub">Conçu pour les consultants, coaches et créateurs qui n'ont pas de temps à perdre sur LinkedIn.</p>
+  <div class="fg">
+    <div class="feat"><div class="feat-i">✍️</div><h3>3 formats viraux en 1 clic</h3><p>Storytelling, liste pratique, opinion tranchée. Les 3 formats qui génèrent le plus d'engagement sur LinkedIn en 2026.</p></div>
+    <div class="feat"><div class="feat-i">🇫🇷</div><h3>100% optimisé français</h3><p>Conçu nativement pour le marché francophone. Ton contenu sonne naturel et authentique, pas comme une traduction.</p></div>
+    <div class="feat"><div class="feat-i">⚡</div><h3>Résultats en 10 secondes</h3><p>Tu entres ton domaine, tu cliques, tu as tes 3 posts. Pas d'attente, pas de complexité. Le temps d'un café.</p></div>
+    <div class="feat"><div class="feat-i">🎯</div><h3>Hooks optimisés algorithme</h3><p>Chaque post commence par un hook conçu pour stopper le scroll. Longueur optimale, appel à l'action — tout y est.</p></div>
+    <div class="feat"><div class="feat-i">🔄</div><h3>Idée ou URL en entrée</h3><p>Colle un lien d'article, une actualité ou une idée brute. LinkedBoost la transforme en contenu LinkedIn structuré.</p></div>
+    <div class="feat"><div class="feat-i">📊</div><h3>Historique et analyse</h3><p>Retrouve tous tes posts générés. Identifie les formats qui performent le mieux sur ton audience.</p></div>
+  </div>
+</div>
+</div>
+
+<div class="nw">
+<div class="nums">
+  <div><div class="nv">+500</div><div class="nl">Professionnels inscrits</div></div>
+  <div><div class="nv">4.9★</div><div class="nl">Note moyenne (127 avis)</div></div>
+  <div><div class="nv">10s</div><div class="nl">Temps de génération moyen</div></div>
+  <div><div class="nv">x4</div><div class="nl">Impressions LinkedIn moyennes</div></div>
+</div>
+</div>
+
+<div style="background:var(--gray)" id="testi">
+<div class="sec">
+  <div class="slabel">Avis clients</div>
+  <div class="th">
+    <h2 style="margin-bottom:0">Ce qu'ils disent.</h2>
+    <div class="tr"><div class="ts">★★★★★</div><div class="trt"><strong>4.9/5</strong> basé sur 127 avis vérifiés</div></div>
+  </div>
+
+  <div class="tg3">
+    <div class="t feat-t"><div class="tbadge">Top avis</div><div class="tstars">★★★★★</div><p class="tt">"En 2 mois, j'ai <strong>multiplié mes impressions par 4.</strong> Je passais 3h par semaine à rédiger — maintenant c'est 10 minutes. Et mes posts performent mieux qu'avant. C'est bluffant."</p><div class="ta"><div class="av" style="background:#0077B5">SC</div><div><div class="an">Sophie C.</div><div class="ar">Consultante RH · Paris</div></div></div></div>
+    <div class="t"><div class="tstars">★★★★★</div><p class="tt">"J'avais peur que ça sonne 'robot'. Mais les posts sont vraiment dans mon style. J'en modifie 20% max avant de publier. <strong>3 nouveaux clients LinkedIn</strong> en 6 semaines."</p><div class="ta"><div class="av" style="background:#00c896">KM</div><div><div class="an">Karim M.</div><div class="ar">Directeur Commercial · Lyon</div></div></div></div>
+    <div class="t"><div class="tstars">★★★★★</div><p class="tt">"J'ai décroché <strong>3 nouveaux clients</strong> via LinkedIn ce mois-ci. Je n'avais pas publié depuis 6 mois avant LinkedBoost. L'outil m'a redonné l'habitude de poster."</p><div class="ta"><div class="av" style="background:#f59e0b">AL</div><div><div class="an">Amina L.</div><div class="ar">Coach Business · Bordeaux</div></div></div></div>
+  </div>
+
+  <div class="tg2">
+    <div class="t"><div class="tstars">★★★★★</div><p class="tt">"En tant que consultant indépendant, LinkedIn est mon principal canal d'acquisition. LinkedBoost a <strong>réduit mon temps de création de contenu de 85%.</strong> Je publie maintenant 4x par semaine sans effort. Mon pipeline a doublé en 3 mois."</p><div class="ta"><div class="av" style="background:#e74c3c">PD</div><div><div class="an">Pierre D.</div><div class="ar">Consultant Strategy · Paris</div></div></div></div>
+    <div class="t"><div class="tstars">★★★★★</div><p class="tt">"J'ai testé 6 outils de génération de contenu LinkedIn. LinkedBoost est le seul qui <strong>comprend vraiment les codes du marché français.</strong> Les autres font des traductions de l'anglais qui sonnent faux. Ici c'est natif, fluide, professionnel."</p><div class="ta"><div class="av" style="background:#8e44ad">NR</div><div><div class="an">Nadia R.</div><div class="ar">Directrice Marketing · Toulouse</div></div></div></div>
+  </div>
+
+  <div class="tg4">
+    <div class="t"><div class="tstars">★★★★★</div><p class="tt">"Simple, rapide, efficace. <strong>+2 400 vues</strong> sur mon premier post généré. Je recommande à tous mes clients."</p><div class="ta"><div class="av" style="background:#1abc9c">JT</div><div><div class="an">Julien T.</div><div class="ar">Coach Commercial · Nantes</div></div></div></div>
+    <div class="t"><div class="tstars">★★★★★</div><p class="tt">"Mon compte est passé de 800 à <strong>3 200 abonnés</strong> en 10 semaines. Contenu régulier, engagement élevé."</p><div class="ta"><div class="av" style="background:#e67e22">MB</div><div><div class="an">Marie B.</div><div class="ar">Agent Immobilier · Nice</div></div></div></div>
+    <div class="t"><div class="tstars">★★★★★</div><p class="tt">"Le format 'opinion tranchée' génère <strong>10x plus de commentaires</strong> que mes anciens posts. Impressionnant."</p><div class="ta"><div class="av" style="background:#2c3e50">TG</div><div><div class="an">Thomas G.</div><div class="ar">Avocat d'affaires · Montpellier</div></div></div></div>
+    <div class="t"><div class="tstars">★★★★★</div><p class="tt">"Utilisé en agence pour 12 clients. <strong>Gain de temps colossal.</strong> On a intégré LinkedBoost dans notre offre."</p><div class="ta"><div class="av" style="background:#c0392b">LF</div><div><div class="an">Laura F.</div><div class="ar">Fondatrice Agence Content · Paris</div></div></div></div>
+  </div>
+
+  <div class="tg3" style="margin-top:0">
+    <div class="t"><div class="tstars">★★★★☆</div><p class="tt">"Très bon outil. Le storytelling est particulièrement fort. <strong>J'aurais aimé un mode ton de voix personnalisable</strong> — mais c'est en cours apparemment. Vivement !"</p><div class="ta"><div class="av" style="background:#7f8c8d">CH</div><div><div class="an">Christophe H.</div><div class="ar">Formateur Indépendant · Rennes</div></div></div></div>
+    <div class="t"><div class="tstars">★★★★★</div><p class="tt">"DRH dans une PME de 200 personnes. J'utilisais LinkedIn 1x par mois. Maintenant <strong>4x par semaine.</strong> Mes collègues me demandent comment je fais. Je garde le secret 😄"</p><div class="ta"><div class="av" style="background:#16a085">IS</div><div><div class="an">Isabelle S.</div><div class="ar">DRH · Strasbourg</div></div></div></div>
+    <div class="t"><div class="tstars">★★★★★</div><p class="tt">"J'ai généré <strong>6 leads qualifiés</strong> en un mois uniquement via LinkedIn. ROI immédiat. Le plan Pro se paie en 1 seul lead."</p><div class="ta"><div class="av" style="background:#2980b9">RB</div><div><div class="an">Romain B.</div><div class="ar">CEO SaaS B2B · Paris</div></div></div></div>
+  </div>
+
+  <div class="tg4" style="margin-top:0">
+    <div class="t"><div class="tstars">★★★★★</div><p class="tt">"J'avais 0 idée de quoi publier sur LinkedIn. LinkedBoost m'a débloqué en <strong>literalement 2 minutes.</strong> Magique."</p><div class="ta"><div class="av" style="background:#d35400">SR</div><div><div class="an">Sarah R.</div><div class="ar">Freelance Design · Bordeaux</div></div></div></div>
+    <div class="t"><div class="tstars">★★★★★</div><p class="tt">"Mon taux d'engagement a augmenté de <strong>230%</strong> en 3 semaines. Les hooks générés sont vraiment puissants."</p><div class="ta"><div class="av" style="background:#27ae60">BK</div><div><div class="an">Bastien K.</div><div class="ar">Growth Hacker · Paris</div></div></div></div>
+    <div class="t"><div class="tstars">★★★★★</div><p class="tt">"Parfait pour mon agence. On crée le contenu de <strong>8 clients LinkedIn</strong> avec LinkedBoost. Rentable dès le 1er mois."</p><div class="ta"><div class="av" style="background:#8e44ad">CL</div><div><div class="an">Clara L.</div><div class="ar">Directrice Agence · Lyon</div></div></div></div>
+    <div class="t"><div class="tstars">★★★★★</div><p class="tt">"En 60 jours, je suis passé de <strong>120 à 1 800 abonnés</strong> LinkedIn. Grâce à la régularité que LinkedBoost m'a permis d'avoir."</p><div class="ta"><div class="av" style="background:#c0392b">AM</div><div><div class="an">Antoine M.</div><div class="ar">Entrepreneur · Lille</div></div></div></div>
+  </div>
+</div>
+</div>
+
+<div style="background:white" id="pricing">
+<div class="sec">
+  <div class="slabel">Tarifs</div>
+  <h2>Simple et<br>transparent.</h2>
+  <p class="ssub">Commence gratuitement. Upgrade quand tu vois les résultats.</p>
+  <div class="pg">
+    <div class="plan">
+      <div class="pname">Free</div>
+      <div class="pprice">0€<span>/mois</span></div>
+      <div class="pdesc">Pour découvrir sans risque</div>
+      <ul class="pf"><li>5 générations par mois</li><li>3 formats LinkedIn inclus</li><li>Bouton copier en 1 clic</li><li class="no">Idée ou URL source</li><li class="no">Historique des posts</li><li class="no">Support prioritaire</li></ul>
+      <button class="pb sec" onclick="scrollToEmail()">Commencer gratuitement</button>
+      <div class="pg2">Pas de carte bancaire requise</div>
+    </div>
+    <div class="plan pop">
+      <div class="pbadge">⚡ Le plus populaire</div>
+      <div class="pname">Starter</div>
+      <div class="pprice">19€<span>/mois</span></div>
+      <div class="pdesc">Pour publier régulièrement</div>
+      <ul class="pf"><li>50 générations par mois</li><li>3 formats LinkedIn inclus</li><li>Idée ou URL source</li><li>Historique 30 jours</li><li>Support prioritaire</li><li class="no">Ton de voix personnalisé</li></ul>
+      <button class="pb prim" onclick="scrollToEmail()">Démarrer — 14 jours gratuits</button>
+      <div class="pg2">Annulation à tout moment</div>
+    </div>
+    <div class="plan">
+      <div class="pname">Pro</div>
+      <div class="pprice">49€<span>/mois</span></div>
+      <div class="pdesc">Pour les créateurs actifs</div>
+      <ul class="pf"><li>300 générations par mois</li><li>Tous les formats inclus</li><li>Ton de voix personnalisé</li><li>Historique illimité</li><li>Export CSV des posts</li><li>Support dédié</li></ul>
+      <button class="pb sec" onclick="scrollToEmail()">Essayer Pro gratuitement</button>
+      <div class="pg2">14 jours d'essai · Sans CB</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div style="background:var(--gray)" id="faq">
+<div class="sec" style="text-align:center">
+  <div class="slabel">FAQ</div>
+  <h2>Questions fréquentes.</h2>
+  <div class="faq-l">
+    <div class="faq-i" onclick="this.classList.toggle('open')"><div class="faq-q">Les posts générés sonnent-ils vraiment naturels en français ?<span class="faq-ic">+</span></div><div class="faq-a">Oui. LinkedBoost utilise Claude, le modèle IA le plus avancé pour le français. Les posts sont rédigés avec un ton humain et authentique, calibrés pour les codes du marché francophone. 80% de nos utilisateurs modifient moins de 20% du contenu avant de publier.</div></div>
+    <div class="faq-i" onclick="this.classList.toggle('open')"><div class="faq-q">Ai-je besoin de compétences techniques ?<span class="faq-ic">+</span></div><div class="faq-a">Aucune. Tu entres ton domaine en français, tu cliques sur "Générer", tu copies le post. C'est tout. Pas d'installation, pas de configuration complexe. Si tu sais écrire un email, tu sais utiliser LinkedBoost.</div></div>
+    <div class="faq-i" onclick="this.classList.toggle('open')"><div class="faq-q">Combien de temps faut-il pour voir des résultats sur LinkedIn ?<span class="faq-ic">+</span></div><div class="faq-a">Nos utilisateurs voient en moyenne une hausse de portée dès le premier post généré. Sur 4 à 8 semaines de publication régulière (3-4 posts/semaine), 70% constatent une augmentation significative de leurs impressions et de leurs demandes de connexion entrantes.</div></div>
+    <div class="faq-i" onclick="this.classList.toggle('open')"><div class="faq-q">LinkedIn peut-il détecter que le contenu est généré par IA ?<span class="faq-ic">+</span></div><div class="faq-a">Non. LinkedIn ne dispose pas de système de détection IA fiable à ce jour. De plus, nos posts sont conçus pour être personnalisés et adaptés à ta voix avant publication. LinkedBoost est un assistant à la rédaction, pas un système de publication automatique.</div></div>
+    <div class="faq-i" onclick="this.classList.toggle('open')"><div class="faq-q">Puis-je annuler mon abonnement à tout moment ?<span class="faq-ic">+</span></div><div class="faq-a">Oui, sans condition et sans frais. Tu peux annuler depuis ton tableau de bord en un clic. Aucun engagement minimum, aucune période de préavis. Tu restes propriétaire de tous les posts générés.</div></div>
+    <div class="faq-i" onclick="this.classList.toggle('open')"><div class="faq-q">Est-ce que LinkedBoost fonctionne pour tous les secteurs ?<span class="faq-ic">+</span></div><div class="faq-a">Oui. LinkedBoost a été testé sur plus de 40 secteurs différents : marketing, immobilier, finance, RH, droit, consulting, tech, coaching, santé, éducation, e-commerce et bien d'autres. L'IA s'adapte au vocabulaire et aux codes de chaque domaine.</div></div>
+    <div class="faq-i" onclick="this.classList.toggle('open')"><div class="faq-q">Quelle est la différence entre les 3 formats de posts ?<span class="faq-ic">+</span></div><div class="faq-a">Le Storytelling raconte une histoire personnelle pour créer de l'émotion. La Liste pratique apporte de la valeur concrète et génère des sauvegardes. L'Opinion tranchée provoque le débat et maximise les commentaires. Les 3 ensemble constituent une stratégie de contenu équilibrée.</div></div>
+    <div class="faq-i" onclick="this.classList.toggle('open')"><div class="faq-q">LinkedBoost propose-t-il un essai gratuit ?<span class="faq-ic">+</span></div><div class="faq-a">Oui. Le plan Free donne accès à 5 générations par mois sans carte bancaire. Les plans Starter et Pro incluent 14 jours d'essai gratuit complet. Tu peux tester toutes les fonctionnalités avant de décider.</div></div>
+  </div>
+</div>
+</div>
+
+<div class="cw">
+<div class="cs">
+  <h2>Prêt à dominer LinkedIn ?</h2>
+  <p>Rejoins 500+ professionnels qui publient sans effort chaque semaine. Accès beta gratuit — places limitées.</p>
+  <div class="cf">
+    <input type="email" id="ctaEmail" placeholder="Votre email professionnel" />
+    <button onclick="ctaSignup()">Accès gratuit →</button>
+  </div>
+  <div class="sm" id="successMsg">🎉 Parfait ! Tu es sur la liste. On te contacte dans les 24h avec ton accès.</div>
+  <div class="ctr">
+    <span class="cti">✓ Pas de carte bancaire</span>
+    <span class="cti">✓ 5 générations offertes</span>
+    <span class="cti">✓ Annulation libre</span>
+  </div>
+</div>
+</div>
+
+<footer>
+<div class="fi2">
+  <div class="ft2">
+    <div class="fb2">
+      <div class="flogo"><div class="fli"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></div>LinkedBoost AI</div>
+      <p class="fd">Le générateur de posts LinkedIn par IA conçu pour les professionnels francophones. Publiez plus, travaillez moins.</p>
+    </div>
+    <div class="fl2"><h4>Produit</h4><ul><li><a href="#how">Comment ça marche</a></li><li><a href="#pricing">Tarifs</a></li><li><a href="#faq">FAQ</a></li><li><a href="#">Changelog</a></li></ul></div>
+    <div class="fl2"><h4>Ressources</h4><ul><li><a href="#">Blog LinkedIn</a></li><li><a href="#">Guide débutant</a></li><li><a href="#">Templates gratuits</a></li><li><a href="#">Affiliation</a></li></ul></div>
+    <div class="fl2"><h4>Légal</h4><ul><li><a href="#">Mentions légales</a></li><li><a href="#">CGU</a></li><li><a href="#">Confidentialité</a></li><li><a href="mailto:hello@linkedboost.ai">Contact</a></li></ul></div>
+  </div>
+  <div class="fb3">
+    <p>© 2026 LinkedBoost AI · Tous droits réservés · Fait avec ❤️ en France</p>
+    <p>Propulsé par Claude AI · <a href="#">Mentions légales</a></p>
+  </div>
+</div>
+</footer>
+
+<script>
+function heroSignup(){const e=document.getElementById('heroEmail').value.trim();if(!e||!e.includes('@')){alert('Merci d\'entrer un email valide.');return}document.getElementById('heroEmail').value='';document.getElementById('heroEmail').placeholder='✓ Inscription enregistrée !';document.getElementById('heroEmail').style.background='#f0fdf4';const b=document.querySelector('.hinput button');b.textContent='✓ C\'est bon !';b.style.background='#00a650'}
+function ctaSignup(){const e=document.getElementById('ctaEmail').value.trim();if(!e||!e.includes('@')){alert('Merci d\'entrer un email valide.');return}document.querySelector('.cf').style.display='none';document.getElementById('successMsg').classList.add('v')}
+function scrollToEmail(){document.getElementById('heroEmail').focus();window.scrollTo({top:0,behavior:'smooth'})}
+</script>
+
+</body>
+</html>
