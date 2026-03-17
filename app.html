@@ -4,237 +4,546 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LinkedBoost AI — Générateur de posts LinkedIn</title>
+<title>LinkedBoost AI — Générateur de Posts LinkedIn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f3f2ef; min-height: 100vh; }
-  header { background: #fff; border-bottom: 1px solid #e0e0e0; padding: 0 24px; height: 56px; display: flex; align-items: center; gap: 10px; }
-  .logo { width: 32px; height: 32px; background: #0077B5; border-radius: 6px; display: flex; align-items: center; justify-content: center; }
-  .logo svg { width: 18px; height: 18px; fill: #fff; }
-  header h1 { font-size: 18px; font-weight: 700; color: #0077B5; }
-  .container { max-width: 720px; margin: 40px auto; padding: 0 20px; }
-  .card { background: #fff; border-radius: 12px; padding: 32px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); margin-bottom: 24px; }
-  .card h2 { font-size: 22px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; text-align: center; }
-  .card p { color: #666; text-align: center; font-size: 15px; margin-bottom: 28px; }
-  label { display: block; font-size: 14px; font-weight: 600; color: #333; margin-bottom: 6px; }
-  input, textarea { width: 100%; padding: 10px 14px; border: 1.5px solid #ddd; border-radius: 8px; font-size: 15px; font-family: inherit; outline: none; transition: border 0.2s; }
-  input:focus, textarea:focus { border-color: #0077B5; }
-  .field { margin-bottom: 18px; }
-  .api-field { margin-bottom: 20px; }
-  .api-note { font-size: 12px; color: #999; margin-top: 4px; }
-  button { width: 100%; padding: 13px; background: #0077B5; color: #fff; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
-  button:hover { background: #005f8f; }
-  button:disabled { background: #a0c4d8; cursor: not-allowed; }
-  .results { display: none; }
-  .results.visible { display: block; }
-  .results h3 { font-size: 16px; font-weight: 700; color: #333; margin-bottom: 16px; }
-  .post-card { background: #fff; border-radius: 10px; padding: 20px; margin-bottom: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); border-left: 4px solid #0077B5; }
-  .post-label { display: inline-block; background: #e8f4fb; color: #0077B5; font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
-  .post-title { font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 10px; }
-  .post-content { font-size: 14px; color: #444; line-height: 1.7; white-space: pre-wrap; }
-  .copy-btn { width: auto; padding: 7px 16px; background: transparent; color: #0077B5; border: 1.5px solid #0077B5; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; margin-top: 14px; transition: all 0.2s; }
-  .copy-btn:hover { background: #0077B5; color: #fff; }
-  .copy-btn.copied { background: #00a650; border-color: #00a650; color: #fff; }
-  .spinner { width: 18px; height: 18px; border: 2px solid rgba(255,255,255,0.4); border-top-color: #fff; border-radius: 50%; animation: spin 0.7s linear infinite; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .error { background: #fff0f0; border: 1px solid #ffcccc; border-radius: 8px; padding: 12px 16px; color: #c0392b; font-size: 14px; margin-top: 12px; display: none; }
-  .error.visible { display: block; }
-  .toggle-api { font-size: 13px; color: #0077B5; cursor: pointer; text-decoration: underline; margin-bottom: 14px; display: inline-block; }
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#0A66C2;--blue-l:#EBF3FC;--blue-d:#084d93;--black:#0f0f0f;--white:#fff;--g50:#f9fafb;--g100:#f3f4f6;--g200:#e5e7eb;--g400:#9ca3af;--g600:#4b5563;--g900:#111827;--green:#10b981;--amber:#f59e0b;--red:#ef4444}
+html,body{height:100%;font-family:'Inter',sans-serif;color:var(--g900);background:var(--g50);-webkit-font-smoothing:antialiased}
+/* LAYOUT */
+.app-wrap{display:grid;grid-template-columns:1fr 1fr;min-height:100vh}
+@media(max-width:900px){.app-wrap{grid-template-columns:1fr}}
+/* LEFT PANEL */
+.left{background:white;border-right:1px solid var(--g200);display:flex;flex-direction:column;height:100vh;overflow-y:auto;position:sticky;top:0}
+/* HEADER */
+.app-header{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid var(--g200);flex-shrink:0}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.logo-mark{width:30px;height:30px;background:var(--blue);border-radius:7px;display:flex;align-items:center;justify-content:center}
+.logo-mark svg{width:16px;height:16px;fill:white}
+.logo-text{font-size:15px;font-weight:700;color:var(--g900)}
+.back-link{font-size:13px;color:var(--g400);text-decoration:none;display:flex;align-items:center;gap:4px;transition:color .15s}
+.back-link:hover{color:var(--blue)}
+/* FORM */
+.form-area{padding:24px;display:flex;flex-direction:column;gap:18px;flex:1}
+.field-label{font-size:13px;font-weight:600;color:var(--g600);margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.field-label .badge{background:var(--blue-l);color:var(--blue);font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px}
+input[type=text],input[type=password],textarea,select{width:100%;padding:10px 14px;border:1.5px solid var(--g200);border-radius:9px;font-size:14px;font-family:'Inter',sans-serif;color:var(--g900);background:white;outline:none;transition:border .2s,box-shadow .2s}
+input[type=text]:focus,input[type=password]:focus,textarea:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(10,102,194,.1)}
+textarea{resize:vertical;min-height:80px;line-height:1.6}
+/* TONE SELECTOR */
+.tone-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tone-btn{border:1.5px solid var(--g200);background:white;border-radius:9px;padding:10px 8px;text-align:center;cursor:pointer;transition:all .15s;font-family:'Inter',sans-serif}
+.tone-btn:hover{border-color:var(--blue);background:var(--blue-l)}
+.tone-btn.active{border-color:var(--blue);background:var(--blue-l);box-shadow:0 0 0 3px rgba(10,102,194,.1)}
+.tone-icon{font-size:18px;display:block;margin-bottom:4px}
+.tone-name{font-size:11px;font-weight:600;color:var(--g600)}
+.tone-btn.active .tone-name{color:var(--blue)}
+/* OPTIONS */
+.options-row{display:flex;gap:8px;flex-wrap:wrap}
+.opt-toggle{display:flex;align-items:center;gap:6px;padding:7px 12px;border:1.5px solid var(--g200);border-radius:8px;cursor:pointer;font-size:12px;font-weight:500;color:var(--g600);background:white;transition:all .15s;user-select:none}
+.opt-toggle:hover{border-color:var(--blue);color:var(--blue)}
+.opt-toggle.active{border-color:var(--blue);background:var(--blue-l);color:var(--blue)}
+.opt-toggle input{display:none}
+/* GENERATE BTN */
+.gen-btn{width:100%;padding:14px;background:var(--blue);color:white;border:none;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .15s}
+.gen-btn:hover{background:var(--blue-d);transform:translateY(-1px);box-shadow:0 4px 12px rgba(10,102,194,.3)}
+.gen-btn:active{transform:translateY(0)}
+.gen-btn:disabled{background:var(--g200);color:var(--g400);cursor:not-allowed;transform:none;box-shadow:none}
+/* API */
+.api-toggle{font-size:12px;color:var(--blue);cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+.api-section{display:none;margin-top:-8px}
+.api-section.open{display:block}
+.api-note{font-size:11px;color:var(--g400);margin-top:4px;line-height:1.5}
+/* ERROR */
+.error-box{background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:10px 14px;color:var(--red);font-size:13px;display:none}
+.error-box.show{display:block}
+/* SPINNER */
+.spinner{width:18px;height:18px;border:2px solid rgba(255,255,255,.3);border-top-color:white;border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+/* RIGHT PANEL — RESULTS */
+.right{padding:24px;overflow-y:auto;display:flex;flex-direction:column;gap:20px}
+.right-header{font-size:13px;font-weight:600;color:var(--g400);text-transform:uppercase;letter-spacing:1px;padding-bottom:16px;border-bottom:1px solid var(--g200)}
+/* POST TABS */
+.post-tabs{display:flex;gap:4px;background:var(--g100);border-radius:10px;padding:4px}
+.post-tab{flex:1;padding:8px;text-align:center;border-radius:7px;font-size:13px;font-weight:500;color:var(--g600);cursor:pointer;transition:all .15s;border:none;background:transparent;font-family:'Inter',sans-serif}
+.post-tab.active{background:white;color:var(--g900);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+/* POST CARD */
+.post-panel{display:none}
+.post-panel.active{display:flex;flex-direction:column;gap:16px}
+/* LINKEDIN PREVIEW */
+.li-preview{background:white;border:1px solid var(--g200);border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.li-preview-header{padding:14px 16px;border-bottom:1px solid var(--g100)}
+.li-profile-row{display:flex;align-items:center;gap:10px;margin-bottom:2px}
+.li-avatar{width:42px;height:42px;background:var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:14px;font-weight:700;flex-shrink:0}
+.li-profile-info{}
+.li-name{font-size:14px;font-weight:600;color:var(--g900)}
+.li-role{font-size:12px;color:var(--g400)}
+.li-time{font-size:11px;color:var(--g400);margin-top:1px}
+.li-preview-body{padding:14px 16px}
+.li-post-text{font-size:14px;color:var(--g900);line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.li-post-text .see-more{color:var(--g400);cursor:pointer}
+.li-preview-footer{padding:8px 16px;border-top:1px solid var(--g100);display:flex;gap:4px}
+.li-action{display:flex;align-items:center;gap:4px;padding:7px 10px;border-radius:6px;font-size:12px;color:var(--g600);cursor:pointer;transition:background .15s;flex:1;justify-content:center;font-weight:500}
+.li-action:hover{background:var(--g100)}
+.li-action svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
+/* CHAR COUNTER */
+.char-bar{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;background:var(--g50);border-radius:8px}
+.char-count{font-size:12px;font-weight:600}
+.char-count.ok{color:var(--green)}
+.char-count.warn{color:var(--amber)}
+.char-count.over{color:var(--red)}
+.char-label{font-size:12px;color:var(--g400)}
+.char-progress{width:100px;height:4px;background:var(--g200);border-radius:2px;overflow:hidden}
+.char-fill{height:100%;background:var(--green);border-radius:2px;transition:all .3s}
+/* ACTIONS */
+.action-row{display:flex;gap:8px}
+.copy-btn{flex:1;padding:10px;border:1.5px solid var(--blue);border-radius:9px;background:white;color:var(--blue);font-size:14px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s;display:flex;align-items:center;justify-content:center;gap:6px}
+.copy-btn:hover{background:var(--blue-l)}
+.copy-btn.copied{background:var(--green);border-color:var(--green);color:white}
+.regen-btn{padding:10px 14px;border:1.5px solid var(--g200);border-radius:9px;background:white;color:var(--g600);font-size:14px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s;display:flex;align-items:center;gap:5px}
+.regen-btn:hover{border-color:var(--g400)}
+/* EDIT AREA */
+.edit-area{width:100%;padding:12px 14px;border:1.5px solid var(--g200);border-radius:9px;font-size:14px;font-family:'Inter',sans-serif;color:var(--g900);background:white;outline:none;resize:vertical;line-height:1.7;min-height:140px;transition:border .2s}
+.edit-area:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(10,102,194,.1)}
+/* SKELETON */
+.skeleton{background:linear-gradient(90deg,var(--g100) 25%,var(--g50) 50%,var(--g100) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:6px}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.skel-line{height:14px;margin-bottom:8px}
+/* EMPTY STATE */
+.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:400px;text-align:center;color:var(--g400);gap:12px}
+.empty-icon{width:56px;height:56px;background:var(--g100);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:24px}
+.empty-title{font-size:15px;font-weight:600;color:var(--g600)}
+.empty-sub{font-size:13px;line-height:1.6;max-width:280px}
+/* UPGRADE BANNER */
+.upgrade-banner{background:linear-gradient(135deg,var(--blue) 0%,#1d9bf0 100%);border-radius:12px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.upgrade-text{color:white}
+.upgrade-title{font-size:14px;font-weight:700;margin-bottom:2px}
+.upgrade-sub{font-size:12px;opacity:.7}
+.upgrade-btn{background:white;color:var(--blue);border:none;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;flex-shrink:0;transition:all .15s}
+.upgrade-btn:hover{background:var(--blue-l)}
 </style>
 </head>
 <body>
-
-<header>
-  <div class="logo">
-    <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-  </div>
-  <h1>LinkedBoost AI</h1>
-</header>
-
-<div class="container">
-  <div class="card">
-    <h2>Générez des posts LinkedIn percutants</h2>
-    <p>Entrez votre domaine d'expertise et obtenez 3 posts optimisés, prêts à publier.</p>
+<div class="app-wrap">
+  <!-- LEFT: FORM -->
+  <div class="left">
+    <div class="app-header">
+      <a class="logo" href="index.html">
+        <div class="logo-mark"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></div>
+        <span class="logo-text">LinkedBoost AI</span>
+      </a>
+      <a class="back-link" href="index.html">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        Retour
+      </a>
+    </div>
 
 ```
-<span class="toggle-api" onclick="toggleApiField()">Configurer ma clé API</span>
+<div class="form-area">
+  <!-- DOMAIN -->
+  <div>
+    <div class="field-label">Domaine d'expertise <span class="badge">Requis</span></div>
+    <input type="text" id="domain" placeholder="Ex : marketing digital, immobilier, RH, coaching…" />
+  </div>
 
-<div class="api-field" id="apiField" style="display:none;">
-  <label for="apiKey">Clé API Anthropic</label>
-  <input type="password" id="apiKey" placeholder="sk-ant-..." />
-  <p class="api-note">Ta clé n'est jamais envoyée ailleurs que l'API Anthropic. Elle reste dans ton navigateur.</p>
+  <!-- IDEA -->
+  <div>
+    <div class="field-label">Idée ou sujet du post <span style="font-weight:400;color:var(--g400);font-size:12px">(optionnel)</span></div>
+    <textarea id="idea" placeholder="Une actualité, une erreur que tu as faite, un conseil, un lien d'article…"></textarea>
+  </div>
+
+  <!-- TONE -->
+  <div>
+    <div class="field-label">Ton du post</div>
+    <div class="tone-grid">
+      <button class="tone-btn active" data-tone="expert" onclick="setTone(this)">
+        <span class="tone-icon">🎯</span>
+        <span class="tone-name">Expert</span>
+      </button>
+      <button class="tone-btn" data-tone="inspirant" onclick="setTone(this)">
+        <span class="tone-icon">✨</span>
+        <span class="tone-name">Inspirant</span>
+      </button>
+      <button class="tone-btn" data-tone="provocateur" onclick="setTone(this)">
+        <span class="tone-icon">🔥</span>
+        <span class="tone-name">Provocateur</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- OPTIONS -->
+  <div>
+    <div class="field-label">Options</div>
+    <div class="options-row">
+      <label class="opt-toggle" id="emojiToggle">
+        <input type="checkbox" id="addEmoji" checked onchange="updateToggle('emojiToggle','addEmoji')">
+        <span>😊 Emojis</span>
+      </label>
+      <label class="opt-toggle active" id="hashToggle">
+        <input type="checkbox" id="addHash" checked onchange="updateToggle('hashToggle','addHash')">
+        <span># Hashtags</span>
+      </label>
+      <label class="opt-toggle" id="hookToggle">
+        <input type="checkbox" id="addHook" onchange="updateToggle('hookToggle','addHook')">
+        <span>⚡ Hook fort</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- API KEY -->
+  <div>
+    <span class="api-toggle" onclick="document.getElementById('apiSection').classList.toggle('open')">⚙️ Configurer la clé API</span>
+    <div class="api-section" id="apiSection">
+      <div style="margin-top:8px">
+        <input type="password" id="apiKey" placeholder="sk-ant-…" />
+        <p class="api-note">Ta clé API Anthropic. Elle reste dans ton navigateur, jamais partagée.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="error-box" id="errorBox"></div>
+
+  <button class="gen-btn" id="genBtn" onclick="generate()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+    Générer mes 3 posts
+  </button>
+
+  <div class="upgrade-banner">
+    <div class="upgrade-text">
+      <div class="upgrade-title">Passe au plan Pro</div>
+      <div class="upgrade-sub">300 générations/mois · Ton personnalisé · Export</div>
+    </div>
+    <button class="upgrade-btn" onclick="window.location.href='index.html#pricing'">Voir les offres →</button>
+  </div>
 </div>
-
-<div class="field">
-  <label for="domain">Domaine d'expertise *</label>
-  <input type="text" id="domain" placeholder="Ex : marketing digital, immobilier, RH..." />
-</div>
-
-<div class="field">
-  <label for="idea">Idée ou URL source <span style="font-weight:400;color:#999">(optionnel)</span></label>
-  <input type="text" id="idea" placeholder="Un sujet précis, une actualité, un lien d'article..." />
-</div>
-
-<button id="generateBtn" onclick="generate()">
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-  Générer mes posts
-</button>
-
-<div class="error" id="errorBox"></div>
 ```
 
   </div>
 
-  <div class="results" id="results">
-    <h3>Vos posts générés</h3>
-    <div id="postsContainer"></div>
+  <!-- RIGHT: RESULTS -->
+
+  <div class="right" id="rightPanel">
+    <div class="right-header">Aperçu LinkedIn</div>
+
+```
+<div class="empty-state" id="emptyState">
+  <div class="empty-icon">✍️</div>
+  <div class="empty-title">Tes posts apparaîtront ici</div>
+  <div class="empty-sub">Entre ton domaine d'expertise à gauche et clique sur "Générer" pour créer 3 posts LinkedIn en 10 secondes.</div>
+</div>
+
+<div id="postsArea" style="display:none;flex-direction:column;gap:20px"></div>
+```
+
   </div>
 </div>
 
 <script>
-function toggleApiField() {
-  const f = document.getElementById('apiField');
-  f.style.display = f.style.display === 'none' ? 'block' : 'none';
+let currentTone = 'expert';
+let posts = [];
+
+// Restore API key
+window.addEventListener('load', () => {
+  const saved = localStorage.getItem('lb_api_key');
+  if(saved) {
+    document.getElementById('apiKey').value = saved;
+    document.getElementById('apiSection').classList.add('open');
+  }
+  // init toggles
+  document.getElementById('emojiToggle').classList.remove('active');
+  document.getElementById('hashToggle').classList.add('active');
+});
+
+function setTone(el){
+  document.querySelectorAll('.tone-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  currentTone = el.dataset.tone;
 }
 
-function showError(msg) {
+function updateToggle(toggleId, inputId){
+  const checked = document.getElementById(inputId).checked;
+  document.getElementById(toggleId).classList.toggle('active', checked);
+}
+
+function showError(msg){
   const el = document.getElementById('errorBox');
   el.textContent = msg;
-  el.classList.add('visible');
+  el.classList.add('show');
 }
+function hideError(){ document.getElementById('errorBox').classList.remove('show'); }
 
-function hideError() {
-  document.getElementById('errorBox').classList.remove('visible');
-}
-
-function setLoading(on) {
-  const btn = document.getElementById('generateBtn');
-  if (on) {
+function setLoading(on){
+  const btn = document.getElementById('genBtn');
+  if(on){
     btn.disabled = true;
-    btn.innerHTML = '<div class="spinner"></div> Génération en cours...';
+    btn.innerHTML = '<div class="spinner"></div> Génération en cours…';
   } else {
     btn.disabled = false;
-    btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Générer mes posts';
+    btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Générer mes 3 posts';
   }
 }
 
-function copyPost(btn, text) {
-  navigator.clipboard.writeText(text).then(() => {
-    btn.textContent = 'Copié !';
-    btn.classList.add('copied');
-    setTimeout(() => { btn.textContent = 'Copier'; btn.classList.remove('copied'); }, 2000);
-  });
+function showSkeletons(){
+  const area = document.getElementById('postsArea');
+  area.style.display = 'flex';
+  document.getElementById('emptyState').style.display = 'none';
+  area.innerHTML = `
+    <div class="post-tabs"><button class="post-tab active">Storytelling</button><button class="post-tab">Liste pratique</button><button class="post-tab">Opinion tranchée</button></div>
+    <div style="background:white;border:1px solid var(--g200);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:10px">
+      <div class="skeleton skel-line" style="width:40%"></div>
+      <div class="skeleton skel-line"></div>
+      <div class="skeleton skel-line"></div>
+      <div class="skeleton skel-line" style="width:70%"></div>
+      <div class="skeleton skel-line"></div>
+      <div class="skeleton skel-line" style="width:85%"></div>
+    </div>`;
 }
 
-function renderPosts(posts) {
-  const labels = ['Storytelling', 'Liste pratique', 'Opinion tranchée'];
-  const container = document.getElementById('postsContainer');
-  container.innerHTML = '';
-  posts.forEach((p, i) => {
-    const div = document.createElement('div');
-    div.className = 'post-card';
-    div.innerHTML = `
-      <span class="post-label">${labels[i] || 'Post ' + (i+1)}</span>
-      <div class="post-title">${p.title}</div>
-      <div class="post-content">${p.content}</div>
-      <button class="copy-btn" onclick="copyPost(this, \`${p.content.replace(/`/g,'\\`')}\`)">Copier</button>
-    `;
-    container.appendChild(div);
-  });
-  document.getElementById('results').classList.add('visible');
-}
-
-function parsePosts(text) {
+function parsePosts(text){
   const parts = text.split(/---POST---/i).map(s => s.trim()).filter(Boolean);
-  return parts.slice(0, 3).map((block, i) => {
+  return parts.slice(0,3).map((block, i) => {
     const lines = block.split('\n').filter(Boolean);
-    const title = lines[0].replace(/^#+\s*/, '').trim();
+    const title = lines[0].replace(/^#+\s*/,'').replace(/\*\*/g,'').trim();
     const content = lines.slice(1).join('\n').trim();
     return { title, content: content || block };
   });
 }
 
-async function generate() {
-  hideError();
-  const domain = document.getElementById('domain').value.trim();
-  const idea = document.getElementById('idea').value.trim();
-  const apiKey = document.getElementById('apiKey').value.trim();
+function renderPosts(posts){
+  const labels = ['Storytelling','Liste pratique','Opinion tranchée'];
+  const colors = [['#EBF3FC','#0A66C2'],['#ECFDF5','#059669'],['#FFFBEB','#d97706']];
+  const area = document.getElementById('postsArea');
+  area.style.display = 'flex';
+  area.innerHTML = '';
 
-  if (!domain) { showError('Veuillez entrer un domaine d\'expertise.'); return; }
-  if (!apiKey) {
-    document.getElementById('apiField').style.display = 'block';
-    showError('Veuillez entrer votre clé API Anthropic pour générer des posts réels.');
-    return;
-  }
+  // TABS
+  const tabsDiv = document.createElement('div');
+  tabsDiv.className = 'post-tabs';
+  tabsDiv.innerHTML = labels.map((l,i) => `<button class="post-tab${i===0?' active':''}" onclick="switchTab(${i})">${l}</button>`).join('');
+  area.appendChild(tabsDiv);
 
-  setLoading(true);
-  document.getElementById('results').classList.remove('visible');
+  // PANELS
+  posts.forEach((post, i) => {
+    const panel = document.createElement('div');
+    panel.className = `post-panel${i===0?' active':''}`;
+    panel.id = `panel-${i}`;
 
-  const prompt = `Tu es un expert LinkedIn francophone spécialisé dans la création de contenu viral et engageant.
+    const charLen = post.content.length;
+    const pct = Math.min(charLen/3000,1)*100;
+    const charClass = charLen > 3000 ? 'over' : charLen > 2500 ? 'warn' : 'ok';
+    const barColor = charLen > 3000 ? 'var(--red)' : charLen > 2500 ? 'var(--amber)' : 'var(--green)';
 
-Génère exactement 3 posts LinkedIn optimisés sur le domaine : "${domain}"${idea ? `\nIdée ou contexte : "${idea}"` : ''}.
+    // Truncate preview
+    const previewText = post.content.length > 280
+      ? post.content.slice(0,280) + '…'
+      : post.content;
 
-Sépare chaque post par ---POST---
+    panel.innerHTML = `
+      <!-- LINKEDIN PREVIEW -->
+      <div class="li-preview">
+        <div class="li-preview-header">
+          <div class="li-profile-row">
+            <div class="li-avatar">LB</div>
+            <div class="li-profile-info">
+              <div class="li-name">Votre nom</div>
+              <div class="li-role">Votre titre · Votre entreprise</div>
+              <div class="li-time">maintenant · 🌍</div>
+            </div>
+          </div>
+        </div>
+        <div class="li-preview-body">
+          <div class="li-post-text" id="preview-${i}">${escHtml(previewText)}${post.content.length>280?'<span class="see-more"> …voir plus</span>':''}</div>
+        </div>
+        <div class="li-preview-footer">
+          <div class="li-action"><svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3H14z"/></svg>J'aime</div>
+          <div class="li-action"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Commenter</div>
+          <div class="li-action"><svg viewBox="0 0 24 24"><polyline points="15 17 20 12 15 7"/><path d="M4 18v-2a4 4 0 014-4h12"/></svg>Republier</div>
+          <div class="li-action"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Envoyer</div>
+        </div>
+      </div>
 
-Post 1 — Storytelling personnel :
-- Commence par une histoire ou anecdote personnelle
-- Structure : situation initiale → problème → solution → leçon
-- Ton : humain, authentique, vulnérable
-- Longueur : 150-200 mots
-- Termine par une question ouverte pour l'engagement
+      <!-- CHAR BAR -->
+      <div class="char-bar">
+        <span class="char-label">Caractères</span>
+        <div style="display:flex;align-items:center;gap:10px">
+          <div class="char-progress"><div class="char-fill" style="width:${pct}%;background:${barColor}"></div></div>
+          <span class="char-count ${charClass}">${charLen} / 3000</span>
+        </div>
+      </div>
 
-Post 2 — Liste pratique :
-- Titre accrocheur avec un chiffre
-- 5 conseils actionnables et concrets
-- Chaque point avec une explication courte
-- Emoji pour chaque point
-- Appel à l'action final
+      <!-- EDIT -->
+      <textarea class="edit-area" id="edit-${i}" oninput="updatePreview(${i})">${escHtml(post.content)}</textarea>
 
-Post 3 — Opinion tranchée :
-- Commence par une affirmation provocatrice ou contre-intuitive
-- Développe avec 2-3 arguments solides
-- Donne ton point de vue clair et assumé
-- Termine par une question qui invite au débat
+```
+  <!-- ACTIONS -->
+  <div class="action-row">
+    <button class="copy-btn" id="copy-${i}" onclick="copyPost(${i})">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+      Copier le post
+    </button>
+    <button class="regen-btn" onclick="regenOne(${i})">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+      Régénérer
+    </button>
+  </div>
+`;
+area.appendChild(panel);
+```
 
-Format de chaque post :
-[Titre du post sur la première ligne]
-[Contenu du post]`;
-
-  try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true'
-      },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 2000,
-        messages: [{ role: 'user', content: prompt }]
-      })
-    });
-
-    if (!res.ok) {
-      const err = await res.json();
-      throw new Error(err.error?.message || 'Erreur API Anthropic');
-    }
-
-    const data = await res.json();
-    const text = data.content[0].text;
-    const posts = parsePosts(text);
-    renderPosts(posts);
-  } catch (err) {
-    showError('Erreur : ' + (err.message || 'Une erreur est survenue.'));
-  } finally {
-    setLoading(false);
-  }
+});
 }
 
-document.addEventListener('keydown', e => {
-  if (e.key === 'Enter' && e.ctrlKey) generate();
+function switchTab(idx){
+document.querySelectorAll(’.post-tab’).forEach((t,i) => t.classList.toggle(‘active’,i===idx));
+document.querySelectorAll(’.post-panel’).forEach((p,i) => p.classList.toggle(‘active’,i===idx));
+}
+
+function updatePreview(idx){
+const text = document.getElementById(`edit-${idx}`).value;
+const preview = document.getElementById(`preview-${idx}`);
+const previewText = text.length > 280 ? text.slice(0,280) + ‘…’ : text;
+preview.innerHTML = escHtml(previewText) + (text.length>280?’<span class="see-more"> …voir plus</span>’:’’);
+
+// Update char count
+const panel = document.getElementById(`panel-${idx}`);
+const charEl = panel.querySelector(’.char-count’);
+const fillEl = panel.querySelector(’.char-fill’);
+const pct = Math.min(text.length/3000,1)*100;
+const color = text.length > 3000 ? ‘var(–red)’ : text.length > 2500 ? ‘var(–amber)’ : ‘var(–green)’;
+charEl.textContent = `${text.length} / 3000`;
+charEl.className = `char-count ${text.length > 3000 ? 'over' : text.length > 2500 ? 'warn' : 'ok'}`;
+fillEl.style.width = pct + ‘%’;
+fillEl.style.background = color;
+}
+
+function copyPost(idx){
+const text = document.getElementById(`edit-${idx}`).value;
+navigator.clipboard.writeText(text).then(() => {
+const btn = document.getElementById(`copy-${idx}`);
+const orig = btn.innerHTML;
+btn.innerHTML = ‘<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Copié !’;
+btn.classList.add(‘copied’);
+setTimeout(() => { btn.innerHTML = orig; btn.classList.remove(‘copied’); }, 2000);
 });
+}
+
+function escHtml(s){
+return s.replace(/&/g,’&’).replace(/</g,’<’).replace(/>/g,’>’).replace(/\n/g,’<br>’);
+}
+
+async function buildPrompt(){
+const domain = document.getElementById(‘domain’).value.trim();
+const idea = document.getElementById(‘idea’).value.trim();
+const addEmoji = document.getElementById(‘addEmoji’).checked;
+const addHash = document.getElementById(‘addHash’).checked;
+const addHook = document.getElementById(‘addHook’).checked;
+
+const toneMap = {expert:‘professionnel et expert, factuel et direct’,inspirant:‘inspirant et positif, avec du storytelling émotionnel’,provocateur:‘provocateur et audacieux, opinion tranchée et directe’};
+const toneDesc = toneMap[currentTone];
+
+const opts = [];
+if(addEmoji) opts.push(‘Ajoute des emojis pertinents pour augmenter l'engagement’);
+if(addHash) opts.push(‘Ajoute 3-5 hashtags pertinents à la fin’);
+if(addHook) opts.push(‘Commence par un hook ultra-accrocheur qui stoppe le scroll (question rhétorique, chiffre choc, ou affirmation surprenante)’);
+
+return `Tu es un expert en copywriting LinkedIn francophone. Ton style est ${toneDesc}.
+
+Génère 3 posts LinkedIn viraux sur : “${domain}”${idea ? `\nContexte/idée : "${idea}"` : ‘’}
+
+${opts.length ? ‘Instructions supplémentaires :\n’ + opts.map(o => ‘- ’ + o).join(’\n’) : ‘’}
+
+Sépare chaque post par —POST—
+
+FORMAT OBLIGATOIRE :
+Post 1 — Storytelling personnel :
+
+- Commence par une histoire ou anecdote concrète
+- Structure : situation → problème → solution → leçon
+- Longueur : 200-300 mots
+- Termine par une question pour l’engagement
+
+Post 2 — Liste pratique :
+
+- Titre avec un chiffre impactant
+- 5 conseils actionnables et précis
+- Chaque point court et direct
+- CTA à la fin
+
+Post 3 — Opinion tranchée :
+
+- Commence par une affirmation forte et contre-intuitive
+- 2-3 arguments qui développent la position
+- Point de vue personnel assumé
+- Question de débat à la fin
+
+Première ligne = titre du post (sans #)
+Ensuite le contenu complet du post.`;
+}
+
+async function generate(){
+hideError();
+const domain = document.getElementById(‘domain’).value.trim();
+const apiKey = document.getElementById(‘apiKey’).value.trim();
+
+if(!domain){ showError(‘Merci d'entrer un domaine d'expertise.’); return; }
+if(!apiKey){
+document.getElementById(‘apiSection’).classList.add(‘open’);
+showError(‘Entre ta clé API Anthropic pour générer des posts réels.’);
+return;
+}
+
+localStorage.setItem(‘lb_api_key’, apiKey);
+setLoading(true);
+showSkeletons();
+
+try {
+const prompt = await buildPrompt();
+const res = await fetch(‘https://api.anthropic.com/v1/messages’, {
+method:‘POST’,
+headers:{‘Content-Type’:‘application/json’,‘x-api-key’:apiKey,‘anthropic-version’:‘2023-06-01’,‘anthropic-dangerous-direct-browser-access’:‘true’},
+body:JSON.stringify({model:‘claude-sonnet-4-20250514’,max_tokens:2500,messages:[{role:‘user’,content:prompt}]})
+});
+if(!res.ok){ const e=await res.json(); throw new Error(e.error?.message||‘Erreur API’); }
+const data = await res.json();
+posts = parsePosts(data.content[0].text);
+renderPosts(posts);
+} catch(err){
+showError(’Erreur : ’ + (err.message||‘Une erreur est survenue.’));
+document.getElementById(‘postsArea’).style.display = ‘none’;
+document.getElementById(‘emptyState’).style.display = ‘flex’;
+} finally {
+setLoading(false);
+}
+}
+
+async function regenOne(idx){
+const apiKey = document.getElementById(‘apiKey’).value.trim();
+if(!apiKey){ showError(‘Clé API requise.’); return; }
+const btn = document.querySelector(`#panel-${idx} .regen-btn`);
+const orig = btn.innerHTML;
+btn.innerHTML = ‘<div class="spinner" style="border-top-color:var(--g600)"></div>’;
+btn.disabled = true;
+
+try {
+const prompt = await buildPrompt();
+const labels = [‘Storytelling’,‘Liste pratique’,‘Opinion tranchée’];
+const singlePrompt = prompt + `\n\nATTENTION : Génère UNIQUEMENT le post ${idx+1} (${labels[idx]}). Un seul post. Pas de séparateur ---POST---.`;
+const res = await fetch(‘https://api.anthropic.com/v1/messages’,{method:‘POST’,headers:{‘Content-Type’:‘application/json’,‘x-api-key’:apiKey,‘anthropic-version’:‘2023-06-01’,‘anthropic-dangerous-direct-browser-access’:‘true’},body:JSON.stringify({model:‘claude-sonnet-4-20250514’,max_tokens:800,messages:[{role:‘user’,content:singlePrompt}]})});
+if(!res.ok) throw new Error();
+const data = await res.json();
+const text = data.content[0].text.trim();
+const lines = text.split(’\n’).filter(Boolean);
+const content = lines.slice(1).join(’\n’).trim();
+document.getElementById(`edit-${idx}`).value = content;
+updatePreview(idx);
+} catch(e){
+showError(‘Erreur lors de la régénération.’);
+} finally {
+btn.innerHTML = orig;
+btn.disabled = false;
+}
+}
 </script>
 
 </body>
